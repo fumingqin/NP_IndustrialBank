@@ -170,7 +170,7 @@
 				],
 				proveType:['请选择','军人','教师','学生'],
 				selectTypeState:false,		//控制是否有免票儿童
-				selectType:['请选择','成人','半票儿童'],
+				selectType:['请选择','成人'],//'半票儿童'
 				selectCode:['请选择','身份证','护照','港澳通行证','台胞证'],
 				// codeType:'请选择证件类型 >',
 				codeType:'身份证 >',
