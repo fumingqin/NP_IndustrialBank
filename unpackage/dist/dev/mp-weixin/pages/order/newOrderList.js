@@ -745,7 +745,7 @@ var _Ctky = _interopRequireDefault(__webpack_require__(/*! @/common/Ctky.js */ 4
         method: _Ctky.default.KyInterface.searchOrder2.method,
         data: {
           clientID: that.userInfo.userId,
-          AppSystemName: that.$ky_cpdg.KyInterface.system.KY_systemName
+          AppSystemName: that.$ky_cpdg.KyInterface.system.KY_systemName2
           // AppSystemName:'交通在线小程序',
         },
         success: function success(res) {

@@ -18,7 +18,7 @@
 					<!-- 站点-余票 -->
 					<view class="np_ct_occ_ti_siteRemainingTickets">
 						<text class="textCLass1">{{ticketDetail.lineName}}</text>
-						<text class="textCLass2">半票￥{{ticketDetail.halfTicket}}</text>
+						<!-- <text class="textCLass2">半票￥{{ticketDetail.halfTicket}}</text> -->
 					</view>
 
 					<!-- 车型-儿童半价 -->
@@ -1044,7 +1044,7 @@
 						margin-bottom: 10upx;
 						font-size: 32upx;
 						color: #333333;
-						width: 488upx;
+						width: 640upx;
 						margin-right: 18upx;
 					}
 

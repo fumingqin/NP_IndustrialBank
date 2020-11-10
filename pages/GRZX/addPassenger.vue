@@ -325,17 +325,14 @@
 			//------------------加载乘车人须知----------------
 			loadText:function(){
 				uni.request({
-					url:this.$GrzxInter.Interface.GetAggrement.value,
-					method:this.$GrzxInter.Interface.GetAggrement.method,
+					url: this.$ky_cpdg.KyInterface.Cs_getByTitle.Url,
+					method: this.$ky_cpdg.KyInterface.Cs_getByTitle.method,
 					success: res =>{
 						console.log(res,'乘车人须知');
-						if(res.data.status){
-							for(let i = 0; i < res.data.data.length; i++){
-								if(res.data.data[i].Title == "购票须知"){
-									this.noticeText=res.data.data[i].Body;
-								}
-							}
-						}
+						var data = res.data.data.filter(item => {
+							return item.Type == '购票须知';
+						})
+						this.noticeText = data[0].Body;
 					},
 				})
 			},

@@ -104,7 +104,7 @@ page,
   margin-bottom: 10rpx;
   font-size: 32rpx;
   color: #333333;
-  width: 488rpx;
+  width: 640rpx;
   margin-right: 18rpx;
 }
 .np_content .np_ct_orderCommonClass .np_ct_occ_ticketInfoClass .np_ct_occ_ti_siteRemainingTickets .textCLass2 {
