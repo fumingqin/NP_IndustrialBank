@@ -508,19 +508,18 @@
 						},
 						success: (res) => {
 							console.log('支付参数', res);
-
 							if (res.data) {
 								if (res.data.status == true) {
 									clearInterval(timer);
 									var msgArray = JSON.parse(res.data.msg);
-									console.log(msgArray)
-									if (msgArray.oldState == '结束') {
+									// console.log(msgArray)
+									if(msgArray.oldState == '结束') {
 										uni.hideLoading();
 										uni.showToast({
 											title: msgArray.message,
 											icon: 'none'
 										})
-									} else if (msgArray.oldState == '支付系统申请支付订单') {
+									} else if(msgArray.oldState == '支付系统申请支付订单') {
 										that.paymentData = msgArray;
 										uni.hideLoading();
 										uni.showModal({
@@ -556,13 +555,34 @@
 										})
 									}
 								} else if (res.data.status == false) {
-									//回调失败，取消定时器
-									clearInterval(timer);
-									uni.hideLoading();
-									uni.showToast({
-										title: res.data.msg,
-										icon: 'none'
-									})
+										clearInterval(timer);//回调失败，取消定时器
+										uni.hideLoading();
+										if (res.data.msg == '订票失败') {
+											uni.hideLoading();
+											uni.request({
+												url: that.$ky_cpdg.KyInterface.Ky_CancelTicket.Url,
+												method: that.$ky_cpdg.KyInterface.Ky_CancelTicket.method,
+												data: {
+													orderNumber: orderNumber,
+												},
+												success: (respones) => {
+													uni.hideLoading()
+													// console.log('取消结果', respones)
+													if (respones.data.status == true) {
+														that.showToast("订票失败，已自动取消异常订单")
+													} else {
+														that.showToast("订票失败，自动取消异常订单失败，请联系客服")
+													}
+												},
+												fail: (respones) => {
+													// alert(respones.data.msg)
+													uni.hideLoading()
+													that.showToast("订票失败，已自动取消异常订单")
+												}
+											})
+										}else{
+											that.showToast("订票失败")
+										}
 								}
 							}
 						},

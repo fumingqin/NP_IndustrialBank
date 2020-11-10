@@ -649,12 +649,11 @@ var _default = { data: function data() {return { countDownDate: 120, //倒计时
 
           success: function success(res) {
             console.log('支付参数', res);
-
             if (res.data) {
               if (res.data.status == true) {
                 clearInterval(timer);
                 var msgArray = JSON.parse(res.data.msg);
-                console.log(msgArray);
+                // console.log(msgArray)
                 if (msgArray.oldState == '结束') {
                   uni.hideLoading();
                   uni.showToast({
@@ -697,13 +696,34 @@ var _default = { data: function data() {return { countDownDate: 120, //倒计时
 
                 }
               } else if (res.data.status == false) {
-                //回调失败，取消定时器
-                clearInterval(timer);
+                clearInterval(timer); //回调失败，取消定时器
                 uni.hideLoading();
-                uni.showToast({
-                  title: res.data.msg,
-                  icon: 'none' });
+                if (res.data.msg == '订票失败') {
+                  uni.hideLoading();
+                  uni.request({
+                    url: that.$ky_cpdg.KyInterface.Ky_CancelTicket.Url,
+                    method: that.$ky_cpdg.KyInterface.Ky_CancelTicket.method,
+                    data: {
+                      orderNumber: orderNumber },
 
+                    success: function success(respones) {
+                      uni.hideLoading();
+                      // console.log('取消结果', respones)
+                      if (respones.data.status == true) {
+                        that.showToast("订票失败，已自动取消异常订单");
+                      } else {
+                        that.showToast("订票失败，自动取消异常订单失败，请联系客服");
+                      }
+                    },
+                    fail: function fail(respones) {
+                      // alert(respones.data.msg)
+                      uni.hideLoading();
+                      that.showToast("订票失败，已自动取消异常订单");
+                    } });
+
+                } else {
+                  that.showToast("订票失败");
+                }
               }
             }
           },
