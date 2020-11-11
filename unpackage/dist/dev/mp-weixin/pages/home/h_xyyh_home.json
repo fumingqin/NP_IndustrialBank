@@ -1,8 +1,0 @@
-{
-  "navigationBarTitleText": "武夷股份特惠快线",
-  "navigationBarBackgroundColor": "#ffad29",
-  "usingComponents": {
-    "uni-popup": "/components/Order/uni-popup/uni-popup",
-    "mx-date-picker": "/components/HOME/mx-datepicker/mx-datepicker"
-  }
-}
