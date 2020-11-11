@@ -446,7 +446,7 @@
 					method: $KyInterface.KyInterface.searchOrder2.method,
 					data: {
 						clientID: that.userInfo.userId,
-						AppSystemName:that.$ky_cpdg.KyInterface.system.KY_systemName2,
+						AppSystemName:that.$ky_cpdg.KyInterface.system.KY_systemName,
 						// AppSystemName:'交通在线小程序',
 					},
 					success: (res) => {
