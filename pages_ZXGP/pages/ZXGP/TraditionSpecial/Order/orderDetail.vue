@@ -38,7 +38,7 @@
 				<view class="title">
 					<view style="display: flex;">出行人：<text class="detailInfo2">{{item.userName}}</text></view>
 					<view style="display: flex;">身份证：<text class="detailInfo2">{{userCodeNumChange(item.userCodeNum)}}</text></view>
-					<view style="display: flex;">座位号：<text class="detailInfo2">{{seat}}</text></view>
+					<view style="display: flex;">座位号：<text class="detailInfo2">{{getseatNumber(orderInfo.seatNumber,index)}}</text></view>
 				</view>
 			</view>
 			<view class="passageInfo u-f-ac">
@@ -147,7 +147,7 @@
 			//-------------------------------获取乘车人信息-------------------------------
 			stringTurnArray(param) {
 				var that = this;
-
+				
 				let a = param.indexOf('|')
 				var singleArray = [];
 				if (a == -1) { //不存在'|' 只有一张车票
@@ -345,7 +345,25 @@
 					return e
 				}
 			},
-
+			
+			getseatNumber: function(e,index) {
+				console.log(e)
+				console.log(index)
+				console.log('-----------分割-----------')
+				if(e !== ''){
+					var a = e.indexOf(',')
+					if (a == -1) {
+						return e
+					} else {
+						var a = e.split(',')
+						return a[index]
+					}
+				}else{
+					return '暂无'
+				}
+				
+			},
+			
 			//接送时间方法
 			getTsetDate: function(e) {
 				var tsetDate2 = e.replace('T', ' ')
