@@ -14,8 +14,10 @@
 			<view class="headText"> 订单号：<text class="detailInfo2">{{orderInfo.orderNumber}}</text></view>
 			<view class="headText"> 发车时间：<text class="detailInfo2">{{orderInfo.setOutTime}}</text></view>
 			<view class="headText"> 班次：<text class="detailInfo2">{{getScheduleNum(orderInfo.planScheduleCode)}}</text></view>
-			<view class="headText"> 上车点：<text class="detailInfo2">{{orderInfo.startSiteName}}</text></view>
-			<view class="headText"> 下车点：<text class="detailInfo2">{{orderInfo.endSiteName}}</text></view>
+			<view class="headText" v-if="orderInfo.carType == '定制班车'" > 上车点：<text class="detailInfo2">{{orderInfo.getOnPoint}}</text></view>
+			<view class="headText" v-if="orderInfo.carType == '定制班车'"> 下车点：<text class="detailInfo2">{{orderInfo.getOffPoint}}</text></view>
+			<view class="headText" v-if="orderInfo.carType == '普通班车'" > 上车点：<text class="detailInfo2">{{orderInfo.startSiteName}}</text></view>
+			<view class="headText" v-if="orderInfo.carType == '普通班车'"> 下车点：<text class="detailInfo2">{{orderInfo.endSiteName}}</text></view>
 		</view>
 		<!-- 接送信息 -->
 		<view class="infoCotent" style="text-align: center;" v-if="orderInfo.IsPickUp == true">
@@ -361,7 +363,6 @@
 				}else{
 					return '暂无'
 				}
-				
 			},
 			
 			//接送时间方法
